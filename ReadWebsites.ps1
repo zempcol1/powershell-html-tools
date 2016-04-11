@@ -2,7 +2,7 @@
 # Fills the list with items (1 item / HTML-File)
 function readWebsites{
 	# Adds HtmlAgilityPack from .NET
-	Add-Type -Path C:\Temp\dependencies\HtmlAgilityPack.dll
+	Add-Type -Path dependencies\HtmlAgilityPack.dll
 	$doc = New-Object HtmlAgilityPack.HtmlDocument
 	$path = Get-Content settings.txt
 
