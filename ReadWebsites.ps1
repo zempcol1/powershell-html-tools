@@ -1,4 +1,7 @@
-﻿function readWebsites{
+﻿# Generates and adds a list to the Panel
+# Fills the list with items (1 item / HTML-File)
+function readWebsites{
+	# Adds HtmlAgilityPack from .NET
 	Add-Type -Path C:\Temp\dependencies\HtmlAgilityPack.dll
 	$doc = New-Object HtmlAgilityPack.HtmlDocument
 	$path = Get-Content settings.txt
@@ -10,12 +13,12 @@
 		$sections = $name.Split("/")
 		$length = $sections.Count
 		$name = $sections[($length-1)]
-		Write-Host $length
 		if($length -gt 2){
 			$section = $sections[($length-2)]
 		}else{
 			$section = "/"
 		}
+		# Get Title and Description from HTML-Files
 		$htmldoc = $doc.Load($_.FullName)
 		$titlenode = $doc.DocumentNode.SelectSingleNode("//title")
 		$descriptionnode = $doc.DocumentNode.SelectSingleNode("//meta[@name='description']")
@@ -26,6 +29,8 @@
 			$description = ""
 		}
 		$title = $titlenode.InnerText
+		
+		#Create Item and add it to the items-array
 		$item = New-Object System.Windows.Forms.ListViewItem($name)
 		$item.SubItems.Add($section)
 		$item.SubItems.Add($title)
