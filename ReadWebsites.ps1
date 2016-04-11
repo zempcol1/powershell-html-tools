@@ -6,12 +6,16 @@
 	$files = Get-ChildItem $path -Filter *.html -Recurse
 	$items = @()
 	$result = $files | %{
-		$name = $_.Fullname.Replace("\", "/")
+		$name = $_.Fullname.Replace($path, "").Replace("\", "/")
 		$sections = $name.Split("/")
 		$length = $sections.Count
-		Write-Host $length
 		$name = $sections[($length-1)]
-		$section = $sections[($length-2)]
+		Write-Host $length
+		if($length -gt 2){
+			$section = $sections[($length-2)]
+		}else{
+			$section = "/"
+		}
 		$htmldoc = $doc.Load($_.FullName)
 		$titlenode = $doc.DocumentNode.SelectSingleNode("//title")
 		$descriptionnode = $doc.DocumentNode.SelectSingleNode("//meta[@name='description']")
