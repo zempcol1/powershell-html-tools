@@ -5,6 +5,7 @@ function generateGUI {
 	. .\ReadWebsites.ps1
   . .\SetSettings.ps1
   . .\CheckSettings.ps1
+  . .\ChangeFooter.ps1
 
 	$form1 = New-Object System.Windows.Forms.Form
 	$button4 = New-Object System.Windows.Forms.Button
@@ -20,7 +21,7 @@ function generateGUI {
 	}
 
 	$button2_OnClick = {
-
+    ChangeFooter
 	}
 
 	$button3_OnClick = {
@@ -84,7 +85,7 @@ function generateGUI {
 	$System_Drawing_Size.Height = 35
 	$System_Drawing_Size.Width = 100
 	$button2.Size = $System_Drawing_Size
-	$button2.Text = "button2"
+	$button2.Text = "Update Footer"
 	$button2.UseVisualStyleBackColor = $True
 	$button2.add_Click($button2_OnClick)
 
