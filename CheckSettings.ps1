@@ -1,0 +1,4 @@
+function CheckSettings{
+    SetSettings
+  }
+}
