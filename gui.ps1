@@ -6,6 +6,7 @@ function generateGUI {
   . .\SetSettings.ps1
   . .\CheckSettings.ps1
   . .\ChangeFooter.ps1
+	. .\ShowPopup.ps1
 
 	$form1 = New-Object System.Windows.Forms.Form
 	$button4 = New-Object System.Windows.Forms.Button
