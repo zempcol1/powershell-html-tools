@@ -7,6 +7,7 @@ function generateGUI {
   . .\CheckSettings.ps1
   . .\ChangeFooter.ps1
 	. .\ShowPopup.ps1
+	. .\ChangeLogo.ps1
 
 	$form1 = New-Object System.Windows.Forms.Form
 	$button4 = New-Object System.Windows.Forms.Button
@@ -26,7 +27,7 @@ function generateGUI {
 	}
 
 	$button3_OnClick = {
-
+		ChangeLogo
 	}
 
 	$button4_OnClick = {
@@ -71,7 +72,7 @@ function generateGUI {
 	$System_Drawing_Size.Height = 35
 	$System_Drawing_Size.Width = 100
 	$button3.Size = $System_Drawing_Size
-	$button3.Text = "button3"
+	$button3.Text = "Change Logo"
 	$button3.UseVisualStyleBackColor = $True
 	$button3.add_Click($button3_OnClick)
 
