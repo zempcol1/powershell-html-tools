@@ -1,9 +1,10 @@
-﻿# Generates and adds a list to the Panel
+# Generates and adds a list to the Panel
 # Fills the list with items (1 item / HTML-File)
 function readWebsites{
 	# Adds HtmlAgilityPack from .NET
 	Add-Type -Path dependencies\HtmlAgilityPack.dll
 	$doc = New-Object HtmlAgilityPack.HtmlDocument
+	CheckSettings
 	$path = Get-Content settings.txt
 
 	$files = Get-ChildItem $path -Filter *.html -Recurse
@@ -26,16 +27,16 @@ function readWebsites{
 			$description = $descriptionnode.GetAttributeValue("content", "")
 		}
 		else {
-			$description = ""
+			$description = " "
 		}
-		$title = $titlenode.InnerText
-		
+		$title = if($titlenode.InnerText -eq $NULL){" "}else{$titlenode.InnerText}
+
 		#Create Item and add it to the items-array
 		$item = New-Object System.Windows.Forms.ListViewItem($name)
 		$item.SubItems.Add($section)
 		$item.SubItems.Add($title)
 		$item.SubItems.Add($description)
-		
+
 		$items += $item;
 	}
 
@@ -52,7 +53,7 @@ function readWebsites{
 
 	# Add items to the ListView
 	$listView.Items.AddRange($items)
-	
+
 	# Add the ListView to the panel
 	$panel1.Controls.Add($listView)
 }
