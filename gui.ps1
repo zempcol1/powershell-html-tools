@@ -19,14 +19,17 @@ function generateGUI {
 	$InitialFormWindowState = New-Object System.Windows.Forms.FormWindowState
 
 	$button1_OnClick = {
+		$panel1.Controls.Clear()
 		readWebsites
 	}
 
 	$button2_OnClick = {
+		$panel1.Controls.Clear()
     ChangeFooter
 	}
 
 	$button3_OnClick = {
+		$panel1.Controls.Clear()
 		ChangeLogo
 	}
 
@@ -117,6 +120,7 @@ function generateGUI {
 	$System_Drawing_Size.Height = 247
 	$System_Drawing_Size.Width = 633
 	$panel1.Size = $System_Drawing_Size
+	$panel1.BackColor = "White"
 
 	$form1.Controls.Add($panel1)
 

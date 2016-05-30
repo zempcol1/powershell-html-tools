@@ -5,9 +5,11 @@ function ChangeFooter{
 	CheckSettings
 
 	$footerButton = New-Object System.Windows.Forms.Button
-  $footerButton.Location = New-Object System.Drawing.Size(0,0)
+  $footerButton.Location = New-Object System.Drawing.Size(10,40)
   $footerButton.Size = New-Object System.Drawing.Size(200,23)
   $footerButton.Text = "Change date in footer"
+  $footerButton.BackColor = "Gray"
+  $footerButton.ForeColor = "White"
   $footerButton.Add_Click({
     	ChangeText
   })

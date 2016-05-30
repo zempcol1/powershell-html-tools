@@ -17,9 +17,11 @@ function ChangeLogo{
   $panel1.Controls.add($logoTextBox)
 
   $OKButton = New-Object System.Windows.Forms.Button
-  $OKButton.Location = New-Object System.Drawing.Size(75,120)
+  $OKButton.Location = New-Object System.Drawing.Size(300,40)
   $OKButton.Size = New-Object System.Drawing.Size(75,23)
-  $OKButton.Text = "Search"
+  $OKButton.BackColor = "Gray"
+  $OKButton.ForeColor = "White"
+  $OKButton.Text = "Change"
   $OKButton.Add_Click({
       if(test-path $global:logoTextBox.Text){
            ChangeImg $global:logoTextBox.Text
