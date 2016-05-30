@@ -4,15 +4,15 @@ function ChangeFooter{
 
 	CheckSettings
 
-	$OKButton = New-Object System.Windows.Forms.Button
-  $OKButton.Location = New-Object System.Drawing.Size(0,0)
-  $OKButton.Size = New-Object System.Drawing.Size(200,23)
-  $OKButton.Text = "Change date in footer"
-  $OKButton.Add_Click({
+	$footerButton = New-Object System.Windows.Forms.Button
+  $footerButton.Location = New-Object System.Drawing.Size(0,0)
+  $footerButton.Size = New-Object System.Drawing.Size(200,23)
+  $footerButton.Text = "Change date in footer"
+  $footerButton.Add_Click({
     	ChangeText
   })
 
-	$panel1.Controls.Add($OKButton)
+	$panel1.Controls.Add($footerButton)
 
 }
 
@@ -43,5 +43,5 @@ function ChangeText{
 			$doc.Save($_.FullName)
     }
   }
-	showPopup "Footer changed successful"
+	showPopup "Footer changed successfully"
 }

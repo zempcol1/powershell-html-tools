@@ -10,19 +10,19 @@ function ChangeLogo{
 
   $panel1.Controls.add($objLabel)
 
-  $objTextBox = New-Object System.Windows.Forms.TextBox
-  $objTextBox.Location = New-Object System.Drawing.Size(10,40)
-  $objTextBox.Size = New-Object System.Drawing.Size(260,20)
-  $panel1.Controls.add($objTextBox)
+  $global:logoTextBox = New-Object System.Windows.Forms.TextBox
+  $global:logoTextBox.Location = New-Object System.Drawing.Size(10,40)
+  $global:logoTextBox.Size = New-Object System.Drawing.Size(260,20)
+  $global:logoTextBox.Text = Get-Content .\settings.txt
+  $panel1.Controls.add($logoTextBox)
 
   $OKButton = New-Object System.Windows.Forms.Button
   $OKButton.Location = New-Object System.Drawing.Size(75,120)
   $OKButton.Size = New-Object System.Drawing.Size(75,23)
   $OKButton.Text = "Search"
   $OKButton.Add_Click({
-        ChangeImg $objTextBox.Text
-      if(test-path $objTextBox.Text){
-        ChangeImg $objTextBox.Text
+      if(test-path $global:logoTextBox.Text){
+           ChangeImg $global:logoTextBox.Text
       } else {
         showError
       }
@@ -51,13 +51,13 @@ function ChangeImg($imgPath){
     }
     # Get Title and Description from HTML-Files
     $htmldoc = $doc.Load($_.FullName)
-    $img = $doc.DocumentNode.SelectSingleNode("//img[@class='logo']")
+    $img = $doc.DocumentNode.SelectSingleNode("//img[@src and @class='logo']")
     if($img -eq $NULL){
 
     }else{
-      $img.Attributes['src'] = "C:\Users\Dante\Documents\GitHub\html\buggyHeader.png"
-			$doc.Save($_.FullName)
+      $img.SetAttributeValue("src",$imgPath)
+		  $doc.Save($_.FullName)
     }
   }
-	showPopup "Logo changed successful"
+	showPopup "Logo changed successfully"
 }

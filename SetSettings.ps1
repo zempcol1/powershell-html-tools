@@ -27,9 +27,7 @@ function SetSettings{
     } else {
       showError
     }
-
-
-    })
+  })
   $objForm.Controls.Add($OKButton)
 
   $CancelButton = New-Object System.Windows.Forms.Button
