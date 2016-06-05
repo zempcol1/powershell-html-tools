@@ -2,13 +2,15 @@ function generateGUI {
 	# Load Dependencies and scripts
 	[reflection.assembly]::loadwithpartialname("System.Windows.Forms") | Out-Null
 	[reflection.assembly]::loadwithpartialname("System.Drawing") | Out-Null
-	. .\ReadWebsites.ps1
-  . .\SetSettings.ps1
-  . .\CheckSettings.ps1
-  . .\ChangeFooter.ps1
+    # Include Files
+    . .\ReadWebsites.ps1
+    . .\SetSettings.ps1
+    . .\CheckSettings.ps1
+    . .\ChangeFooter.ps1
 	. .\ShowPopup.ps1
 	. .\ChangeLogo.ps1
 
+    # Define Gui
 	$form1 = New-Object System.Windows.Forms.Form
 	$button4 = New-Object System.Windows.Forms.Button
 	$button3 = New-Object System.Windows.Forms.Button
@@ -18,17 +20,21 @@ function generateGUI {
 	$Title = New-Object System.Windows.Forms.Label
 	$InitialFormWindowState = New-Object System.Windows.Forms.FormWindowState
 
+    #Start set onclick
 	$button1_OnClick = {
+        #Clear panel
 		$panel1.Controls.Clear()
 		readWebsites
 	}
 
 	$button2_OnClick = {
+        #Clear panel
 		$panel1.Controls.Clear()
-    ChangeFooter
+        ChangeFooter
 	}
 
 	$button3_OnClick = {
+        #Clear panel
 		$panel1.Controls.Clear()
 		ChangeLogo
 	}
@@ -36,11 +42,11 @@ function generateGUI {
 	$button4_OnClick = {
     SetSettings
 	}
-
+    #End set onclick
 	$OnLoadForm_StateCorrection = {
 		$form1.WindowState = $InitialFormWindowState
 	}
-
+    #Build Form
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Height = 308
 	$System_Drawing_Size.Width = 670
@@ -50,7 +56,7 @@ function generateGUI {
 	$form1.Name = "form1"
 	$form1.ShowIcon = $False
 	$form1.Text = "Media GmbH - HTML Toolcollection"
-
+    # Build Button Folder Path
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 553
 	$System_Drawing_Point.Y = 6
@@ -65,7 +71,7 @@ function generateGUI {
 	$button4.add_Click($button4_OnClick)
 
 	$form1.Controls.Add($button4)
-
+    #Build Button Change Logo
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 442
 	$System_Drawing_Point.Y = 6
@@ -80,7 +86,7 @@ function generateGUI {
 	$button3.add_Click($button3_OnClick)
 
 	$form1.Controls.Add($button3)
-
+    # Build Button Update Footer
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 130
 	$System_Drawing_Point.Y = 6
@@ -96,6 +102,7 @@ function generateGUI {
 
 	$form1.Controls.Add($button2)
 
+    #Build Button HTML-Files
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 18
 	$System_Drawing_Point.Y = 6
@@ -110,7 +117,7 @@ function generateGUI {
 	$button1.add_Click($button1_OnClick)
 
 	$form1.Controls.Add($button1)
-
+    #Build Panel
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 19
 	$System_Drawing_Point.Y = 46
